@@ -1,0 +1,56 @@
+.friendMessage {
+    position: relative; /* Для использования относительного позиционирования */
+    border-radius: 8px; /* Закругление углов */
+    padding: 15px; /* Отступы внутри сообщения */
+    margin: 10px 0; /* Отступы между сообщениями */
+    box-shadow: 0px 5px 20px rgba(29, 33, 38, 0.03), 0px 1px 2px rgba(29, 33, 38, 0.1); /* Тень */
+    max-width: 49%; /* Максимальная ширина сообщения */
+    
+}
+
+.friendImageAndText {
+    display: flex; /* Используем Flexbox для размещения */
+    align-items: flex-start; /* Выравнивание по верхнему краю */
+}
+
+.friendImageAndText img {
+    width: 48px; 
+    height: 48px; 
+    border-radius: 50%; 
+    margin-right: 10px; 
+}
+
+.friendText {
+    background-color: #9da7b1;
+    border-radius: 5px;
+    text-align: left;
+}
+
+.friendName {
+    font-family: 'Montserrat', sans-serif; 
+    font-weight: 600; 
+    font-size: 16px; 
+    line-height: 20px; 
+    color: black; 
+}
+
+.friendMessageText {
+    font-family: 'Montserrat', sans-serif; 
+    font-weight: 400; 
+    font-size: 16px; 
+    line-height: 20px; 
+    color: black; 
+    margin: 5px 0; 
+    
+}
+
+.friendTime {
+    font-family: 'Montserrat', sans-serif; 
+    font-weight: 600; 
+    font-size: 10px; 
+    line-height: 12px; 
+    color: #000000; 
+    position: absolute;  
+    justify-content: "flex-start";
+    left: 25px;
+}
