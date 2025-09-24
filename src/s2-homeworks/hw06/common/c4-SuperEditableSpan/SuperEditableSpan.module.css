@@ -1,11 +1,28 @@
 .spanBlock {
+  display: flex;
+  align-items: center;
 }
 
 .span {
+  padding: 6px 8px;
+  min-width: 120px;
+  border-radius: 4px;
+  color: #1976d2;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.span:hover {
+  text-decoration: underline;
 }
 
 .input {
+  padding: 6px 8px;
+  min-width: 200px;
 }
 
 .pen {
+  width: 16px;
+  height: 16px;
+  margin-right: 8px;
 }
