@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import s2 from "../../s1-main/App.module.css";
 import s from "./HW13.module.css";
 import SuperButton from "../hw04/common/c2-SuperButton/SuperButton";
@@ -29,29 +29,32 @@ const HW13 = () => {
       .post(url, { success: x })
       .then((res) => {
         setCode("Код 200!");
-        setText("...всё ок)");
+        setText(res.data.errorText);
         setImage(success200);
-        setInfo("success");
+        setInfo("код 200 - обычно означает что скорее всего всё ок)");
       })
       .catch((e) => {
         if (e.response) {
           const status = e.response.status;
-
           if (status === 400) {
             setCode("Ошибка 400!");
             setText("Ты не отправил success в body вообще!");
             setImage(error400);
-            setInfo("error");
+            setInfo(
+              "ошибка 400 - обычно означает что скорее всего фронт отправил что-то не то на бэк!"
+            );
           } else if (status === 500) {
             setCode("Ошибка 500!");
             setText("эмитация ошибки на сервере");
             setImage(error500);
-            setInfo("error");
+            setInfo(
+              "ошибка 500 - обычно означает что что-то сломалось на сервере, например база данных)"
+            );
           } else {
             setCode(`Ошибка ${status}!`);
-            setText(`Неизвестная ошибка сервера.\nСтатус: ${status}`);
+            setText(e.message);
             setImage(errorUnknown);
-            setInfo("error");
+            setInfo(e.name);
           }
         } else {
           setCode("Ошибка!");

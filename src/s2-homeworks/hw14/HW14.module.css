@@ -1,7 +1,25 @@
 .tech {
+    background-color: #fff;
+    padding: 10px 15px;
+    margin: 10px 0;
+    border: 1px solid #d1d1d1;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    font-size: 16px;
+    color: #333;
+    transition: all 0.2s;
+}
 
+.tech:hover {
+    background-color: #f0f0f0;
+    transform: translateX(5px);
 }
 
 .loading {
-
+    height: 30px;
+    margin: 15px 0;
+    font-weight: bold;
+    color: #4a90e2;
+    display: flex;
+    align-items: center;
 }

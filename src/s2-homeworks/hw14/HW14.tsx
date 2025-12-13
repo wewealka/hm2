@@ -36,9 +36,11 @@ const HW14 = () => {
         setLoading(false);
       });
   }, []);
-
   const onChangeText = (value: string) => {
     setFind(value);
+  };
+
+  const onDebouncedChange = (value: string) => {
     const newParams = new URLSearchParams(searchParams);
     if (value) {
       newParams.set("find", value);
@@ -51,9 +53,11 @@ const HW14 = () => {
   useEffect(() => {
     const params = Object.fromEntries(searchParams);
     const findValue = params.find || "";
+
     setFind(findValue);
+
     sendQuery(findValue);
-  }, [searchParams]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [searchParams, sendQuery]);
 
   const mappedTechs = techs.map((t) => (
     <div key={t} id={"hw14-tech-" + t} className={s.tech}>
@@ -70,7 +74,7 @@ const HW14 = () => {
           id={"hw14-super-debounced-input"}
           value={find}
           onChangeText={onChangeText}
-          onDebouncedChange={sendQuery}
+          onDebouncedChange={onDebouncedChange}
         />
 
         <div id={"hw14-loading"} className={s.loading}>
