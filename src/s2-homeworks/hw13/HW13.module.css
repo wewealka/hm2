@@ -1,22 +1,52 @@
 .buttonsContainer {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
 }
 
 .responseContainer {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 5px;
+    min-height: 120px;
 }
 
 .imageContainer {
+    margin-right: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100px;
 }
 
 .image {
+    max-width: 100%;
+    height: auto;
 }
 
-.textContainer{
+.textContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
 }
 
 .code {
+    font-weight: bold;
+    font-size: 16px;
 }
 
 .text {
+    font-size: 14px;
+    white-space: pre-wrap;
 }
+
 .info {
+    font-size: 12px;
+    color: gray;
+    margin-top: 5px;
 }
