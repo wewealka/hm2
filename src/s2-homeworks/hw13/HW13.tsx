@@ -8,12 +8,6 @@ import error400 from './images/400.svg'
 import error500 from './images/500.svg'
 import errorUnknown from './images/error.svg'
 
-/*
-* 1 - дописать функцию send
-* 2 - дизэйблить кнопки пока идёт запрос
-* 3 - сделать стили в соответствии с дизайном
-* */
-
 const HW13 = () => {
     const [code, setCode] = useState('')
     const [text, setText] = useState('')
@@ -23,25 +17,49 @@ const HW13 = () => {
     const send = (x?: boolean | null) => () => {
         const url =
             x === null
-                ? 'https://xxxxxx.ccc' // имитация запроса на не корректный адрес
+                ? 'https://xxxxxx.ccc'  // неправильный URL
                 : 'https://samurai.it-incubator.io/api/3.0/homework/test'
 
+        // Очистка
         setCode('')
-        setImage('')
         setText('')
+        setImage('')
         setInfo('...loading')
 
         axios
             .post(url, {success: x})
             .then((res) => {
                 setCode('Код 200!')
+                setText('...всё ок!')
                 setImage(success200)
-                // дописать
-
+                setInfo('success')
             })
             .catch((e) => {
-                // дописать
+                if (e.response) {
+                    const status = e.response.status
 
+                    if (status === 400) {
+                        setCode('Ошибка 400!')
+                        setText('Вы отправили success = false.\nНекорректный запрос.')
+                        setImage(error400)
+                        setInfo('error')
+                    } else if (status === 500) {
+                        setCode('Ошибка 500!')
+                        setText('Сервер сломался.\nПопробуйте позже.')
+                        setImage(error500)
+                        setInfo('error')
+                    } else {
+                        setCode(`Ошибка ${status}!`)
+                        setText(`Неизвестная ошибка сервера.\nСтатус: ${status}`)
+                        setImage(errorUnknown)
+                        setInfo('error')
+                    }
+                } else {
+                    setCode('Ошибка!')
+                    setText('AxiosError: Network Error')
+                    setImage(errorUnknown)
+                    setInfo('error')
+                }
             })
     }
 
@@ -55,35 +73,34 @@ const HW13 = () => {
                         id={'hw13-send-true'}
                         onClick={send(true)}
                         xType={'secondary'}
-                        // дописать
-
+                        disabled={info === '...loading'}
                     >
                         Send true
                     </SuperButton>
+
                     <SuperButton
                         id={'hw13-send-false'}
                         onClick={send(false)}
                         xType={'secondary'}
-                        // дописать
-
+                        disabled={info === '...loading'}
                     >
                         Send false
                     </SuperButton>
+
                     <SuperButton
                         id={'hw13-send-undefined'}
                         onClick={send(undefined)}
                         xType={'secondary'}
-                        // дописать
-
+                        disabled={info === '...loading'}
                     >
                         Send undefined
                     </SuperButton>
+
                     <SuperButton
                         id={'hw13-send-null'}
-                        onClick={send(null)} // имитация запроса на не корректный адрес
+                        onClick={send(null)}
                         xType={'secondary'}
-                        // дописать
-
+                        disabled={info === '...loading'}
                     >
                         Send null
                     </SuperButton>
