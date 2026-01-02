@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import s2 from "../../s1-main/App.module.css";
 import s from "./HW15.module.css";
 import axios from "axios";
@@ -47,7 +47,7 @@ const HW15 = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [techs, setTechs] = useState<TechType[]>([]);
 
-  const sendQuery = (params: ParamsType) => {
+  const sendQuery = useCallback((params: ParamsType) => {
     setLoading(true);
     getTechs(params)
       .then((res) => {
@@ -64,7 +64,7 @@ const HW15 = () => {
       .catch(() => {
         setLoading(false);
       });
-  };
+  }, []);
 
   const onChangePagination = (newPage: number, newCount: number) => {
     // делает студент
@@ -114,7 +114,7 @@ const HW15 = () => {
     setCount(countParam);
     setSort(sortParam);
     sendQuery({ sort: sortParam, page: pageParam, count: countParam });
-  }, []);
+  }, [searchParams, sendQuery]);
 
   const mappedTechs = techs.map((t) => (
     <div key={t.id} className={s.row}>
